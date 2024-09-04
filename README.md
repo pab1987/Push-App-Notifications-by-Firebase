@@ -30,3 +30,29 @@ Importante:
 Deben de crear su proyecto de Firebase
 Configurarlo en Flutter, revisar:
 firebase.flutter.dev/docs
+
+# Para recibir notificaciones via Api Rest se debe hacer lo siguiente. 
+1. levantar el servidor de node para obtener el Bearer Token 
+2. desde postman hacer la petición a localhost:3000
+
+## En el nuevo endpoint
+https://fcm.googleapis.com/v1/projects/<<ID del proyecto>>/messages:send
+El Id del proyecto se obtiene en firebase, engranaje, configuración del proyecto
+3. copiar el token recibido y pegarlo en Authorization Bearer Token
+4. En el body ponemos el json de la petición tipo post que vamos a enviar:
+{
+   "message":{
+      "token":"di6qzkAASqOQ3_wgy4Z4mC:APA91bHyQNiiDgbTTmaO4n17xE_0v6HmmjfOhzIUjiFTvh-7bu5RPvA6ygBnXmZ-dGU1KIh03zAnY711Tsp3LFghY-snnyMRMWiEAC5lHZ0unm63Qjnfvwf1oLxls6eY1euvHk0As3CM",
+      "data":{},
+      "notification":{
+        "title":"FCM Message",
+        "body":"This is an FCM notification message!"
+      }
+   }
+}
+
+5. Debemos verificar que la app en el emulador esté corriendo.
+6. Debemos recibir una confirmación de este tipo.
+{
+    "name": "projects/app-notifications-flutte-8bdfd/messages/0:1725451046530444%47bfbbff47bfbbff"
+}
